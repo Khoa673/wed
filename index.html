@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowerShop - Trang Chủ</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">🌸 FlowerShop</a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Trang Chủ</a></li>
+                <li><a href="html/gioi-thieu.html">Giới Thiệu</a></li>
+                <li><a href="html/san-pham.html">Sản Phẩm</a></li>
+                <li><a href="html/lien-he.html">Liên Hệ</a></li>
+            </ul>
+            <div style="display: flex; align-items: center; gap: 20px;">
+                <a href="html/gio-hang.html" class="cart-icon">🛒 <span id="cart-count" class="cart-count">0</span></a>
+                <a href="html/dang-nhap.html" style="color: #555; text-decoration: none;">Đăng nhập</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero" style="background-image: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url('https://source.unsplash.com/random/1920x1080/?flowers,rose');">
+        <div class="hero-content">
+            <h1>Trao Gửi Yêu Thương<br>Qua Từng Cánh Hoa</h1>
+            <p>FlowerShop cung cấp hoa tươi chất lượng cao cho mọi dịp đặc biệt.</p>
+            <div>
+                <a href="html/san-pham.html" class="btn btn-primary">Mua Ngay</a>
+                <a href="html/san-pham.html" class="btn btn-outline">Xem Sản Phẩm</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sản phẩm Hot -->
+    <section class="section">
+        <h2 class="section-title">🔥 Sản Phẩm Hot - Bán Chạy</h2>
+        <div id="flower-grid" class="flower-grid"></div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div><h3>🌸 FlowerShop</h3><p>Mang đến không gian yêu thương qua từng bó hoa tươi đẹp nhất.</p></div>
+            <div><h3>Liên Kết</h3><p><a href="index.html">Trang Chủ</a></p><p><a href="html/gioi-thieu.html">Giới Thiệu</a></p><p><a href="html/san-pham.html">Sản Phẩm</a></p><p><a href="html/lien-he.html">Liên Hệ</a></p></div>
+            <div><h3>Thông Tin</h3><p><strong>Email:</strong> aktv1412@gmail.com</p><p><strong>Hotline:</strong> 0823 676 937</p><p><strong>Địa chỉ:</strong> TP. Trà Vinh</p></div>
+        </div>
+        <div style="text-align:center; margin-top:50px; padding-top:20px; border-top:1px solid #333; color:#777;">© 2026 FlowerShop. All Rights Reserved.</div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

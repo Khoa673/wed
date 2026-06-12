@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng Ký - FlowerShop</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .auth-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        .auth-image {
+            flex: 1;
+            background: linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), 
+                        url('https://source.unsplash.com/random/1200x1600/?flower,shop,bouquet') center/cover no-repeat;
+            display: none;
+        }
+        .auth-form {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            background: #fff;
+        }
+        .form-box {
+            width: 100%;
+            max-width: 420px;
+        }
+        .auth-form h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            color: #333;
+        }
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            margin: 12px 0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        .btn-auth {
+            width: 100%;
+            padding: 15px;
+            background: #e91e63;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        .btn-auth:hover {
+            background: #c2185b;
+            transform: translateY(-3px);
+        }
+        @media (min-width: 992px) {
+            .auth-image { display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="auth-container">
+        <!-- Bên trái: Hình ảnh hoa đẹp -->
+        <div class="auth-image"></div>
+
+        <!-- Bên phải: Form đăng ký -->
+        <div class="auth-form">
+            <div class="form-box">
+                <h2>Đăng Ký Tài Khoản</h2>
+                <form onsubmit="handleRegister(event)">
+                    <input type="text" id="reg-name" class="form-input" placeholder="Họ và tên" required>
+                    <input type="email" id="reg-email" class="form-input" placeholder="Email" required>
+                    <input type="password" id="reg-password" class="form-input" placeholder="Mật khẩu (tối thiểu 6 ký tự)" required>
+                    <input type="password" id="reg-confirm" class="form-input" placeholder="Xác nhận mật khẩu" required>
+                    <button type="submit" class="btn-auth">Đăng Ký</button>
+                </form>
+                
+                <p style="text-align:center; margin-top:25px;">
+                    Đã có tài khoản? 
+                    <a href="dang-nhap.html" style="color:#e91e63; font-weight:500;">Đăng nhập</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

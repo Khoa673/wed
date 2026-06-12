@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giỏ Hàng - FlowerShop</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .cart-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        .cart-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        .cart-total {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #e91e63;
+            text-align: right;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">🌸 FlowerShop</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Trang Chủ</a></li>
+                <li><a href="gioi-thieu.html">Giới Thiệu</a></li>
+                <li><a href="san-pham.html">Sản Phẩm</a></li>
+                <li><a href="lien-he.html">Liên Hệ</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="section">
+        <h2 class="section-title">🛒 Giỏ Hàng Của Bạn</h2>
+        
+        <div id="cart-items"></div>
+        
+        <div class="cart-total">
+            Tổng tiền: <span id="total-price">0</span> VNĐ
+        </div>
+
+        <div style="text-align: center; margin-top: 30px;">
+            <button onclick="checkout()" class="btn btn-primary" style="padding: 16px 50px; font-size: 1.2rem;">
+                Thanh Toán Ngay
+            </button>
+            <a href="san-pham.html" style="display: inline-block; margin-left: 15px; color: #e91e63; text-decoration: none;">
+                ← Tiếp tục mua sắm
+            </a>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div>
+                <h3>🌸 FlowerShop</h3>
+                <p>Mang đến không gian yêu thương qua từng bó hoa tươi đẹp nhất.</p>
+            </div>
+            <div>
+                <h3>Liên Kết</h3>
+                <p><a href="../index.html">Trang Chủ</a></p>
+                <p><a href="gioi-thieu.html">Giới Thiệu</a></p>
+                <p><a href="san-pham.html">Sản Phẩm</a></p>
+                <p><a href="lien-he.html">Liên Hệ</a></p>
+            </div>
+            <div>
+                <h3>Thông Tin</h3>
+                <p><strong>Email:</strong> aktv1412@gmail.com</p>
+                <p><strong>Hotline:</strong> 0823 676 937</p>
+                <p><strong>Địa chỉ:</strong> TP. Trà Vinh, Việt Nam</p>
+            </div>
+        </div>
+        <div style="text-align:center; margin-top:50px; padding-top:20px; border-top:1px solid #333; color:#777;">
+            © 2026 FlowerShop. All Rights Reserved.
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        function renderCartPage() {
+            const container = document.getElementById('cart-items');
+            const totalEl = document.getElementById('total-price');
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            let total = 0;
+
+            if (cart.length === 0) {
+                container.innerHTML = `<p style="text-align:center; padding:80px; font-size:1.2rem;">Giỏ hàng của bạn đang trống</p>`;
+                totalEl.textContent = '0';
+                return;
+            }
+
+            container.innerHTML = '';
+            cart.forEach((item, index) => {
+                const subtotal = item.price * item.quantity;
+                total += subtotal;
+
+                const div = document.createElement('div');
+                div.className = 'cart-item';
+                div.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}">
+                    <div style="flex: 1;">
+                        <h3>${item.name}</h3>
+                        <p>${item.price.toLocaleString('vi-VN')} VNĐ × ${item.quantity}</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <button onclick="changeQuantity(${index}, -1)" style="width:30px; height:30px;">-</button>
+                        <span style="margin:0 10px; font-weight:bold;">${item.quantity}</span>
+                        <button onclick="changeQuantity(${index}, 1)" style="width:30px; height:30px;">+</button>
+                        <br><br>
+                        <button onclick="removeFromCart(${index})" style="color:red; background:none; border:none; cursor:pointer;">Xóa</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            totalEl.textContent = total.toLocaleString('vi-VN');
+        }
+
+        function changeQuantity(index, change) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart[index].quantity += change;
+            if (cart[index].quantity < 1) cart[index].quantity = 1;
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCartPage();
+            updateCartCount();
+        }
+
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            cart.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cart));
+            renderCartPage();
+            updateCartCount();
+        }
+
+        function checkout() {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            if (cart.length === 0) {
+                alert("Giỏ hàng trống!");
+                return;
+            }
+            alert("🎉 Cảm ơn bạn! Đơn hàng đã được xác nhận thành công.");
+            localStorage.removeItem('cart');
+            window.location.href = "../index.html";
+        }
+
+        // Load giỏ hàng khi mở trang
+        document.addEventListener("DOMContentLoaded", renderCartPage);
+    </script>
+</body>
+</html>
